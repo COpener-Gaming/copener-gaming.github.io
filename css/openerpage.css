@@ -253,7 +253,7 @@ section {
 
 .setup .pcstats {
   width: 100%; /*i have no fucking idea*/
-  background-color: #b6b6b6;
+  background-color: #404040;
   border-bottom-left-radius: 1rem;
   border-bottom-right-radius: 1rem;
 }
