@@ -229,6 +229,10 @@ class MinoBoard extends HTMLElement {
                 }
             }
         }
+
+        this.addEventListener("click", function (e) {
+            if (e.key.toLowerCase == "m") this.mirror();
+        });
     }
 
     // Everything from this point onwards is by Flyspeck101 and is a testament to his lack of coding skills. 
