@@ -239,6 +239,7 @@ section {
 .fumenboards {
   display: flex;
   flex-wrap: wrap;
+  align-items: flex-end;
 }
 
 .fumenboards > mino-board {
