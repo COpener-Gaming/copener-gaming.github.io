@@ -231,6 +231,8 @@ class MinoBoard extends HTMLElement {
         }
     }
 
+    // Everything from this point onwards is by Flyspeck101 and is a testament to his lack of coding skills. 
+    
     regenerate() {
     this.innerHTML = "";
         this.field = this.getAttribute("data-field").split("|");
@@ -368,6 +370,17 @@ class MinoBoard extends HTMLElement {
                         4, 20, color));
                 }
             }
+        }
+
+        mirror() {
+            this.setAttribute("data-field", this.getAttribute("data-field")
+                              .split("")
+                              .map(c => {"_":"_", "|":"|", "X":"X", "I":"I", "O":"O", "T":"T", "S":"Z", "Z":"S", "J":"L", "L":"J"}[c])
+                              .join("")
+                              .split("|")
+                              .map(a => a.split("").reverse().join(""))
+                              .join("|"));
+            this.regenerate();
         }
     }
 
