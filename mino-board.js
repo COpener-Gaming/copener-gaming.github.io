@@ -232,6 +232,7 @@ class MinoBoard extends HTMLElement {
     }
 
     regenerate() {
+        this.field = this.getAttribute("data-field").split("|");
         if (!MinoBoard.boardRegex.test(field)) {
             const unknown = field.match(/[^\sGXIJLOSTZ_]/)[0];
             this.innerText = 'Cannot draw field. Unknown character: ' + unknown;
