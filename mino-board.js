@@ -236,6 +236,7 @@ class MinoBoard extends HTMLElement {
         document.addEventListener("keyup", function (e) {
             if (e.key == "m") board.mirror();
         });
+        if (document.getElementById("bMirror")) document.getElementById("bMirror").addEventListener("click", function (e) { board.mirror(); });
     }
     
     regenerate() {
