@@ -230,7 +230,7 @@ class MinoBoard extends HTMLElement {
             }
         }
 
-        this.addEventListener("keydown", function (e) {
+        document.addEventListener("keydown", function (e) {
             if (e.key == "m") this.mirror();
         });
     }
