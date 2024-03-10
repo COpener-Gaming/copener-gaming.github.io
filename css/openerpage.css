@@ -298,8 +298,8 @@ section {
   position: fixed;
   top: 2rem;
   right: 2rem;
-  width: 6vh;
-  height: 6vh;
+  width: 6vw;
+  height: 6vw;
   z-index: 100; /*nobody else use anything bigger!!! */
   -webkit-appearance: none;
   border-radius: 0; /*mobile apps are rounding buttons automatically apparently; this maybe is a fix */
