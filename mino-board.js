@@ -376,7 +376,7 @@ class MinoBoard extends HTMLElement {
     mirror() {
         this.setAttribute("data-field", this.getAttribute("data-field")
                           .split("")
-                          .map(c => {"_":"_", "|":"|", "X":"X", "I":"I", "O":"O", "T":"T", "S":"Z", "Z":"S", "J":"L", "L":"J"}[c])
+                          .map(c => { return {"_":"_", "|":"|", "X":"X", "I":"I", "O":"O", "T":"T", "S":"Z", "Z":"S", "J":"L", "L":"J"}[c] })
                           .join("")
                           .split("|")
                           .map(a => a.split("").reverse().join(""))
