@@ -232,7 +232,7 @@ class MinoBoard extends HTMLElement {
     }
 
     regenerate() {
-
+    this.innerHTML = "";
         this.field = this.getAttribute("data-field").split("|");
         this.field.width = Math.max(...this.field.map(s => s.length));
         for (let row = 0; row < this.field.length; row++) {
@@ -341,9 +341,6 @@ class MinoBoard extends HTMLElement {
                 let mino = getMino(this.field, row, col);
                 if (mino !== '_') {
                     let extend = 'X';
-                    if (row === field.length-1 || getMino(this.field, row+1, col) === '_') {
-                        extend = '_';
-                    }
                     l.push(mino + extend);
                 } else {
                     l.push('_');
