@@ -294,6 +294,15 @@ section {
   margin-bottom: 0;
 }
 
+#bMirror { /* i dont like camelcase :/ but whatever */
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  width: 3rem;
+  height: 3rem;
+  z-index: 100; /*nobody else use anything bigger!!! */
+}
+
 mino-board.generic-setup {}
 
 mino-board.specific-setup {}
