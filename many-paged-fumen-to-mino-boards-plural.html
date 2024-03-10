@@ -9,15 +9,11 @@
     <br>
     step 3 profit 
     <br>
-    <textarea id="input"></textarea>
+    <textarea id="input" rows=8 cols=100></textarea>
     <br>
-    <br>
-    <br>
-    <br>
-    <br>
+    <textarea id="output" rows=8 cols=100></textarea>
     <br>
     <button onclick="doTheThing()">magic!</button>
-    <textarea id="output"></textarea>
     <script>
       function doTheThing() {
         document.getElementById("output").value = document.getElementById("input").value.split("\n").map(f => "<mino-board fumen=\"" + f + "\"></mino-board>").join("\n");
