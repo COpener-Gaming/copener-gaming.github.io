@@ -232,14 +232,8 @@ class MinoBoard extends HTMLElement {
     }
 
     regenerate() {
-        this.field = this.getAttribute("data-field").split("|");
-        if (!MinoBoard.boardRegex.test(field)) {
-            const unknown = field.match(/[^\sGXIJLOSTZ_]/)[0];
-            this.innerText = 'Cannot draw field. Unknown character: ' + unknown;
-            return;
-        }
 
-        this.field = field.trim().split('\n');
+        this.field = this.getAttribute("data-field").split("|");
         this.field.width = Math.max(...this.field.map(s => s.length));
         for (let row = 0; row < this.field.length; row++) {
             if (this.field[row].length !== this.field.width) {
