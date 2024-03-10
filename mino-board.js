@@ -60,6 +60,7 @@ class MinoBoard extends HTMLElement {
     }
 
     setup(field) {
+        const board = this;
         const { decoder } = require('tetris-fumen');
         this.innerHTML = '';
 
@@ -231,7 +232,7 @@ class MinoBoard extends HTMLElement {
         }
 
         document.addEventListener("keydown", function (e) {
-            if (e.key == "m") this.mirror();
+            if (e.key == "m") board.mirror();
         });
     }
 
