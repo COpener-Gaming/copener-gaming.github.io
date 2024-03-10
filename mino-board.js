@@ -382,6 +382,11 @@ class MinoBoard extends HTMLElement {
                           .map(a => a.split("").reverse().join(""))
                           .join("|"));
         this.regenerate();
+        this.toggleAttribute("mirrored");
+    }
+
+    isMirrored() {
+        return this.hasAttribute("mirrored");
     }
 
 }
