@@ -1,0 +1,24 @@
+<html>
+  <head>
+    <title>the thing</title>
+  </head>
+  <body>
+    step 1 use swng's fumen util or any other fumen util to split the fumen into many single-paged fumens 
+    step 2 paste it below and press the button (make sure you get rid of any leading or trailing line breaks!)
+    step 3 profit 
+    <textarea id="input"></textarea>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <button onclick="doTheThing()">magic!</button>
+    <textarea id="output"></textarea>
+    <script>
+      function doTheThing() {
+        document.getElementById("output").value = document.getElementById("input").value.split("\n").map(f => "<mino-board f=\"" + f + "></mino-board>";).join("\n");
+      }
+    </script>
+  </body>
+</html>
