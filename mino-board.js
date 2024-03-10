@@ -231,12 +231,12 @@ class MinoBoard extends HTMLElement {
             }
         }
 
-        document.addEventListener("keydown", function (e) {
+    // Everything from this point onwards is by Flyspeck101 and is a testament to his lack of coding skills. 
+
+        document.addEventListener("keyup", function (e) {
             if (e.key == "m") board.mirror();
         });
     }
-
-    // Everything from this point onwards is by Flyspeck101 and is a testament to his lack of coding skills. 
     
     regenerate() {
     this.innerHTML = "";
