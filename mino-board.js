@@ -231,6 +231,154 @@ class MinoBoard extends HTMLElement {
         }
     }
 
+    regenerate() {
+        if (!MinoBoard.boardRegex.test(field)) {
+            const unknown = field.match(/[^\sGXIJLOSTZ_]/)[0];
+            this.innerText = 'Cannot draw field. Unknown character: ' + unknown;
+            return;
+        }
+
+        this.field = field.trim().split('\n');
+        this.field.width = Math.max(...this.field.map(s => s.length));
+        for (let row = 0; row < this.field.length; row++) {
+            if (this.field[row].length !== this.field.width) {
+                this.field[row] = this.field[row].padEnd(this.field.width, '_');
+            }
+        }
+
+        this.setAttribute('data-field', this.field.join('|'));
+
+        const verticalPadding = 1;
+        const width = 20 * this.field.width;
+        const height = 20 * (this.field.length + verticalPadding);
+
+        const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        svg.setAttribute('width', width);
+        svg.setAttribute('height', height);
+        svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
+        this.appendChild(svg);
+
+        const getMino = (field, row, col) => field[row]?.[col];
+
+        function* minos(field) {
+            for (let row = 0; row < field.length; row++) {
+                for (let col = 0; col < field.width; col++) {
+                    const mino = getMino(field, row, col);
+
+                    if (mino != '_') {
+                        yield [row, col, mino];
+                    }
+                }
+            }
+        }
+
+        function* minoRuns(field) {
+            for (let row = 0; row < field.length; row++) {
+                let col = 0;
+                while (col < field.width) {
+                    let mino = getMino(field, row, col);
+                    if (mino === '_') {col++; continue;}
+                    for (let i = col+1; i <= field.width; i++) {
+                        if (getMino(field, row, i) === mino) {continue;}
+                        yield [row, col, mino, i-col];
+                        col = i;
+                        break;
+                    }
+                }
+            }
+        }
+
+        function rect(x, y, width, height, fill) {
+            const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+            rect.setAttribute('x', x);
+            rect.setAttribute('y', y);
+            rect.setAttribute('width', width);
+            rect.setAttribute('height', height);
+            rect.setAttribute('fill', fill);
+            return rect;
+        }
+
+        svg.appendChild(rect(0, 0, '100%', '100%', MinoBoard.colors['background']));
+
+        const fieldShadow = this.field.map((s, row) => {
+            let l = '';
+            for (let col = 0; col < this.field.width; col++) {
+                if (getMino(this.field, row, col) !== '_' && (
+                    getMino(this.field, row, col+1) === '_' ||
+                    getMino(this.field, row+1, col) === '_' ||
+                    getMino(this.field, row+1, col+1) === '_')) {
+                    l += 'X';
+                } else {
+                    l += '_';
+                }
+            }
+            return l;
+        });
+        fieldShadow.width = this.field.width;
+
+        for (const [row, col, mino, run] of minoRuns(fieldShadow)) {
+            svg.appendChild(rect(20 * col + 5, 20 * (row + verticalPadding) + 7, 20 * run, 20,
+                MinoBoard.colors['shadow']));
+        }
+
+        const fieldTop = this.field.map((s, row) => {
+            let l = '';
+            for (let col = 0; col < this.field.width; col++) {
+                if (getMino(this.field, row, col) !== '_' &&
+                    (row === 0 || getMino(this.field, row-1, col) === '_')) {
+                    l += getMino(this.field, row, col);
+                } else {
+                    l += '_';
+                }
+            }
+            return l;
+        });
+        fieldTop.width = this.field.width;
+
+        for (const [row, col, mino, run] of minoRuns(fieldTop)) {
+            svg.appendChild(rect(20 * col, 20 * (row + verticalPadding) - 4, 20 * run, 4 + 2,
+            MinoBoard.colors['top'][mino]));
+        }
+
+        const fieldMain = this.field.map((s, row) => {
+            let l = [];
+            for (let col = 0; col < this.field.width; col++) {
+                let mino = getMino(this.field, row, col);
+                if (mino !== '_') {
+                    let extend = 'X';
+                    if (row === field.length-1 || getMino(this.field, row+1, col) === '_') {
+                        extend = '_';
+                    }
+                    l.push(mino + extend);
+                } else {
+                    l.push('_');
+                }
+            }
+            return l;
+        });
+        fieldMain.width = this.field.width;
+
+        for (const [row, col, [mino, extend], run] of minoRuns(fieldMain)) {
+            const color = MinoBoard.colors['regular'][mino];
+            const extendRight = (col+run !== this.field.width && getMino(this.field, row, col+run) !== '_');
+
+            if (extend === '_') {
+                svg.appendChild(rect(20 * col, 20 * (row + verticalPadding),
+                    20 * run + (extendRight ? 2 : 0), 20, color));
+            } else {
+                if (!extendRight || getMino(this.field, row+1, col+run) !== '_') {
+                    svg.appendChild(rect(20 * col, 20 * (row + verticalPadding),
+                        20 * run + (extendRight ? 2 : 0), 20 + 2, color));
+                } else {
+                    svg.appendChild(rect(20 * col, 20 * (row + verticalPadding),
+                        20 * run, 20 + 2, color));
+                    svg.appendChild(rect(20 * (col + run) - 2, 20 * (row + verticalPadding),
+                        4, 20, color));
+                }
+            }
+        }
+    }
+
 }
 
 customElements.define('mino-board', MinoBoard);
