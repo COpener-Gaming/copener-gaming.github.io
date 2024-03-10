@@ -211,6 +211,7 @@ section {
   width: 100%vw;
   border-radius: 1rem;
   flex-direction: column;
+  overflow: hidden;
   /* background-color: #363941; */
 }
 
@@ -252,10 +253,8 @@ section {
 }
 
 .setup .pcstats {
-  width: 100%; /*i have no fucking idea*/
+  width: 100%;
   background-color: #b6b6b6;
-  border-bottom-left-radius: 1rem;
-  border-bottom-right-radius: 1rem;
 }
 
 .pcboard:hover {
