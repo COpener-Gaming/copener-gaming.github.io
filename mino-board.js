@@ -231,7 +231,7 @@ class MinoBoard extends HTMLElement {
         }
 
         this.addEventListener("keydown", function (e) {
-            if (e.key.toLowerCase == "m") this.mirror();
+            if (e.key == "m") this.mirror();
         });
     }
 
@@ -387,6 +387,7 @@ class MinoBoard extends HTMLElement {
                           .join("|"));
         this.regenerate();
         this.toggleAttribute("mirrored");
+        console.log("mirrored");
     }
 
     isMirrored() {
