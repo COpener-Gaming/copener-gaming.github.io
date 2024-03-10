@@ -4,8 +4,11 @@
   </head>
   <body>
     step 1 use swng's fumen util or any other fumen util to split the fumen into many single-paged fumens 
+    <br>
     step 2 paste it below and press the button (make sure you get rid of any leading or trailing line breaks!)
+    <br>
     step 3 profit 
+    <br>
     <textarea id="input"></textarea>
     <br>
     <br>
@@ -17,7 +20,7 @@
     <textarea id="output"></textarea>
     <script>
       function doTheThing() {
-        document.getElementById("output").value = document.getElementById("input").value.split("\n").map(f => "<mino-board f=\"" + f + "></mino-board>";).join("\n");
+        document.getElementById("output").value = document.getElementById("input").value.split("\n").map(f => "<mino-board f=\"" + f + "\"></mino-board>").join("\n");
       }
     </script>
   </body>
