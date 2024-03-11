@@ -303,6 +303,11 @@ section {
   z-index: 100; /*nobody else use anything bigger!!! */
   -webkit-appearance: none;
   border-radius: 0; /*mobile apps are rounding buttons automatically apparently; this maybe is a fix */
+  font-size: 2rem;
+}
+
+#bMirror::before { /* yeah man idk how css works either */
+  content: '⇌';
 }
 
 mino-board.generic-setup {}
