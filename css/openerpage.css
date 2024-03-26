@@ -203,19 +203,16 @@ section {
   opacity: 0.5;
 }
 
-.setup-list {
+.bag {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   flex-wrap: wrap;
 }
 
 .setup {
-  display: flex;
-  align-items: flex-start;
   margin-bottom: 0.5rem;
   position: relative;
   border: 2px solid #53575e;
-  width: 100%vw;
   border-radius: 1rem;
   flex-direction: column;
   overflow: hidden;
@@ -276,7 +273,11 @@ section {
 }
 
 .dropdown {
+}
 
+.forcebottom {
+  position: absolute;
+  bottom: 0px;
 }
 
 .setup-display {
