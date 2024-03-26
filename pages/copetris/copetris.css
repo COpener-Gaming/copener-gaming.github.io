@@ -1,0 +1,20 @@
+html {
+  font-family: 'Roboto Mono', sans-serif;
+  font-size: 14px;
+  color: white;
+  background: #363941;
+}
+
+body, div {
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+  box-sizing: border-box;
+}
+.container {
+	position: absolute; 
+	left: calc(50vw - 50vh + 50px);
+	top: 50px;
+	height: calc(100vh - 100px);
+	width: calc(100vh - 100px);
+	border: 2px solid white;
+}
