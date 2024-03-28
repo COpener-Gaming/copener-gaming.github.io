@@ -31,7 +31,7 @@ $(document).ready(function(){
 			board.style.left = "calc(" + tetrisObject.board.field.width * 50 / tetrisObject.board.field.renderedHeight + "vh - " + (tetrisObject.board.field.width * 50 / tetrisObject.board.field.renderedHeight + 2) + "px)";
 			board.style.top = "-2px";
 			board.style.border = "2px solid white";
-			board.style.backgroundColor = "999999";
+			board.style.backgroundColor = "#444444";
 			$(".container").append(board);
 			let canvas = document.createElement("canvas");
 			canvas.style.position = "absolute";
@@ -43,12 +43,15 @@ $(document).ready(function(){
 			
 			// grid 
 			function update() {
+				canvas.width  = canvas.offsetWidth;
+				canvas.height = canvas.offsetHeight;
+				tetrisObject = tetris.getObject();
 				const ctx = canvas.getContext("2d");
-				context.clearRect(0, 0, canvas.width, canvas.height);
-				for (let y = 0; y< tetrisObject.board.field.trueHeight; y++) {
+				ctx.clearRect(0, 0, canvas.width, canvas.height);
+				for (let y = 0; y < tetrisObject.board.field.renderedHeight; y++) {
 					for (let x = 0; x < tetrisObject.board.field.width; x++) {
-						ctx.fillStyle = tetrisObject.meta.colours[tetrisObject.board.field.data[tetrisObject.board.field.trueHeight - tetrisObject.board.field.renderedHeight + y][x]];
-						ctx.fillRect(x * board.clientWidth / tetrisObject.board.field.width + 1, y * board.clientWidth / tetrisObject.board.field.width + 1, board.clientWidth / tetrisObject.board.field.width - 2, board.clientWidth / tetrisObject.board.field.width - 2)
+						ctx.fillStyle = tetrisObject.meta.colours[tetrisObject.board.field.data[y][x]];
+						ctx.fillRect(x * board.clientWidth / tetrisObject.board.field.width + 1, (tetrisObject.board.field.renderedHeight - y - 1) * board.clientWidth / tetrisObject.board.field.width + 1, board.clientWidth / tetrisObject.board.field.width - 2, board.clientWidth / tetrisObject.board.field.width - 2)
 					}
 				}
 			}
