@@ -2,7 +2,7 @@
 let tetris = {
 	getObject: function(){},
 	devGetObject: function(){},
-	generate: function(){}
+	generate: function(){},
 };
 
 function cyrb128(str) {
@@ -112,7 +112,17 @@ class Piece {
 		}
 	};
 
-	const seed = cyrb128(tetrisObj.queue.seed)
+	tetrisObj.queue.seed = (Date.now() * Math.random()).toString();
+
+	// URL queries 
+	const urlSplit = window.location.href.split("?");
+	if (urlSplit.length > 1) {
+		// JS magic 
+		let searchParams = new URLSearchParams(urlSplit[urlSplit.length - 1]); 
+		if (searchParams.has("seed")) tetrisObj.queue.seed = searchParams.get("seed");
+	}
+
+	const seed = cyrb128(tetrisObj.queue.seed);
 	let rand = splitmix32(seed[0], seed[1], seed[2], seed[3]);
 	
 	for (let y = 0; y< tetrisObj.board.field.trueHeight; y++) {
