@@ -222,7 +222,8 @@ section {
   /* background-color: #363941; */
 }
 
-.setup > div {
+.setup > div,
+.setup > a {
   padding: 0.5rem;
 }
 
@@ -354,4 +355,8 @@ summary {
 
 ul.compact {
   padding-left: 20px;
+}
+
+.setup_link {
+
 }

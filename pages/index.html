@@ -2,19 +2,53 @@
   <head>
     <meta charset="utf-8">
     <title>Landing Page</title>
+    <script src="../js/mino-board.js" type="text/javascript"></script>
+    <script src="../js/tetris-fumen.js" type="text/javascript"></script>
     <script src="../js/pagestyling.js" type="text/javascript"></script>
     <script src="../js/landingpagecode.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Roboto Mono:400,700,i' rel='stylesheet'>
     <link href="../css/openerpage.css" rel="stylesheet"></link>
+    <link href="../css/landingpage.css" rel="stylesheet"></link>
     <script>let __LOAD = performance.now();</script>
   </head>
 
-  <h1>Copener website!!!!</h1>
+  <div class=header>
+    <img src="../css/assets/logo.png" alt="copener gaming logo, poorly drawn">
+    <h1 class = "landingpagetitle">Copener website!!!!</h1>
+  </div>
 
-  <h2>All current openers</h2>
+  <div class = "columns">
+    <div class="column openerlist">
+      <h2>All current openers</h2>
 
-  <ul id="pageList"></ul>
-  <script>
-      fetchAndDisplayPages();
-  </script>
+      <div id="pageList"></div>
+      <script>
+          fetchAndDisplayPages();
+      </script>
+    </div>
+
+    <div class="column">
+      <h2>Opener of the week</h2>
+      <div class="setup">
+        <a href="openers/setspin.html" class="setup_link boardheader">Setspin!</a>
+        <div>do with this what u will</div>
+        <div class="fumenboards">
+          <mino-board fumen="v115@pgwhIewhIewhAeR4CeywwhR4AtDewwg0RpBtBeilg0?RpAtCeglAeh0JeAgH"></mino-board>
+        </div>
+      </div>
+      <ul id="pageList"></ul>
+      <script>
+      </script>
+    </div>
+
+    <div class="column">
+      <h2>Recent Research</h2>
+        * cringemoment discovers that she is in fact, very silly and the boardheader tag is just missing (???) from the css file<br>
+        * i think reallynotsomeone does something with sillyspin man idk this is a mockup
+      <ul id="pageList"></ul>
+      <script>
+      </script>
+    </div>
+  </div>
+
 </html>

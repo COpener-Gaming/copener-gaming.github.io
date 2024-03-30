@@ -1,0 +1,31 @@
+.columns {
+  display: flex;
+}
+
+.column {
+  width: calc(100% / 3);
+  bottom: 20rem;
+  flex-direction: column;
+  border: 2px solid black;
+  box-sizing: border-box;
+  padding: 0 1rem;
+  border: 0.3rem solid #53575e;
+  border-radius: 1rem;
+}
+
+.openerlist {
+}
+
+.landingpagetitle {
+  margin-left: auto;
+}
+
+.header {
+  display:flex;
+}
+
+br {
+    height: 2rem; /* Adjust the height as needed */
+    display: block; /* Ensures height property works */
+    content: " "; /* Ensures the height is applied */
+}
