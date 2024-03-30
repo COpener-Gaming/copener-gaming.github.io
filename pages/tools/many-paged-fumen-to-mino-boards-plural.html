@@ -18,6 +18,26 @@
       function doTheThing() {
         document.getElementById("output").value = document.getElementById("input").value.split("\n").map(f => "<mino-board fumen=\"" + f + "\"></mino-board>").join("\n");
       }
+      function splitFumen(value) {
+        var fumenCodes = [];
+        results = [];
+        input = value;
+        for (let rawInput of input.split("\t")) {
+            fumenCodes.push(...rawInput.split(/\s/));
+        }
+    
+        for (let code of fumenCodes) {
+            try {
+                let inputPages = decoder.decode(code);
+                for (let i = 0; i < inputPages.length; i++) {
+                    if (inputPages[0].flags.colorize) inputPages[i].flags.colorize = true;
+                    results.push(encoder.encode([inputPages[i]]));
+                }
+            } catch (error) { console.log(code, error); }
+        }
+        console.log(results.join(' '));
+        return results.join("\n");
+    }
     </script>
   </body>
 </html>

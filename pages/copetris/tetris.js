@@ -111,8 +111,9 @@ class Piece {
 			}
 		}
 	};
-	
-	let rand = splitmix32(cyrb128(tetrisObj.queue.seed));
+
+	const seed = cyrb128(tetrisObj.queue.seed)
+	let rand = splitmix32(seed[0], seed[1], seed[2], seed[3]);
 	
 	for (let y = 0; y< tetrisObj.board.field.trueHeight; y++) {
 		let row = [];
@@ -121,7 +122,8 @@ class Piece {
 		}
 		tetrisObj.board.field.data.push(row);
 	}
-	tetris.getObject = function () {
+
+	tetris.getObject = function() {
 		if (typeof structuredClone === "function") { 
 			return structuredClone(tetrisObj);
 		} else { 
@@ -164,7 +166,6 @@ class Piece {
 	tetris.devGetObject = function() {return tetrisObj;	};
 	tetris.generate = function() {
 		let bag = ["J", "L", "S", "Z", "I", "O", "T"];
-		let bagLength = bag.length;
-		for (let i = 0; i < bagLength; i++) tetrisObj.queue.data.push(bag.splice(Math.floor(rand(tetrisObj.queue.seed) * bag.length), 1)[0]);
+		for (; bag.length > 0; ) tetrisObj.queue.data.push(bag.splice(Math.floor(rand() * bag.length), 1)[0]);
 	}
 })();
