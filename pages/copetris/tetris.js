@@ -37,7 +37,17 @@ function splitmix32(a) {
 
 class Piece {
 	constructor(p) {
+		this.pos = (20, 4);
+		this.rot = 0;
 		switch (p) {
+			case "E":
+				this.rotations = [
+					[(0, 0)],
+					[(0, 0)],
+					[(0, 0)],
+					[(0, 0)]
+				];
+				break;
 			case "I": 
 				this.rotations = [
 					[ // (x, y) offset from centre 
@@ -52,7 +62,7 @@ class Piece {
 						(+1, 0),
 						(+1, -1)
 					],
-					[ // (x, y) offset from centre 
+					[
 						(-1, 0),
 						(0, 0),
 						(+1, 0),
@@ -65,6 +75,36 @@ class Piece {
 						(0, -1)
 					]
 				];
+				break;
+			case "O": 
+				this.rotations = [
+					[
+						(0, 0),
+						(+1, 0),
+						(+1, +1),
+						(0, +1)
+					],
+					[
+						(0, 0),
+						(+1, 0),
+						(+1, +1),
+						(0, +1)
+					],
+					[
+						(0, 0),
+						(+1, 0),
+						(+1, +1),
+						(0, +1)
+					],
+					[
+						(0, 0),
+						(+1, 0),
+						(+1, +1),
+						(0, +1)
+					]
+				];
+				break;
+				
 		}
 	}
 }
@@ -120,6 +160,12 @@ class Piece {
 		// JS magic 
 		let searchParams = new URLSearchParams(urlSplit[urlSplit.length - 1]); 
 		if (searchParams.has("seed")) tetrisObj.queue.seed = searchParams.get("seed");
+		if (searchParams.has("queue")) {
+			let queue = searchParams.get("queue").split("");
+			for (let i = 0; i < queue.length; i++) {
+				if (["I", "T", "O", "J", "L", "S", "Z"].includes(queue[i])) tetrisObj.queue.data.push(queue[i]);
+			}
+		}
 	}
 
 	const seed = cyrb128(tetrisObj.queue.seed);
