@@ -30,27 +30,33 @@
 <div id="output"></div>
 
 <script>
-	let inputQueue = document.getElementById("queueSearchInput").value;
 	function queueSearch()
 	{
-		if (inputQueue == "T")
+		let inputQueue = document.getElementById("queueSearchInput").value;
+		if (inputQueue === "T")
 		{
+			document.getElementById("output").textContent = "hi";
 			return "hi";
 		}
 		else
 		{
+			document.getElementById("output").textContent = "bye";
 			return "bye";
 		}
 	}
 
 	function queueSearchMirrored()
 	{
-		if (inputQueue == "TI")
+		let inputQueue = document.getElementById("queueSearchInput").value;
+		if (inputQueue === "TI")
 		{
+			document.getElementById("output").textContent = "hi";
 			return "hi";
 		}
 		else
 		{
+			
+			document.getElementById("output").textContent = "bye";
 			return "bye";
 		}
 	}
