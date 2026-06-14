@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Guardian Angel Spin B2B PC Finder</title>
+  <script src="../../js/mino-board.js" type="text/javascript"></script>
+  <script src="../../js/tetris-fumen.js" type="text/javascript"></script>
+  <script src="../../js/pagestyling.js" type="text/javascript"></script>
+  <link href='https://fonts.googleapis.com/css?family=Roboto Mono:400,700,i' rel='stylesheet'>
+  <link href="../../css/openerpage.css" rel="stylesheet"></link>
+  <script>let __LOAD = performance.now();</script>
+</head>
+
+<body>
+
+<h1>Guardian Angel Spin PC Finder</h1>
+<mino-board fumen="v115@pgQ4IeR4GeglwhQ4EeilwhCeAtDeg0whRpBtwwCeg0?whRpAtywAeh0JeAgH"></mino-board>
+<mino-board fumen="v115@ygAtg0GeBti0EeAtwhglDeQ4CewhglCewwR4Rpwhhl?AeywQ4RpwhJeAgH"></mino-board>
+
+<h2>Bag 1</h2>
+		<input type="text" id="Queue Search" />
+		<button type="button" onclick="queueSearch()">Queue Search</button>
+		<input type="text" id="Queue Search Mirrored" />
+		<button type="button" onclick="queueSearchMirrored()">Queue Search Mirrored</button>
+		<br>
+    Input a queue starting with the held T here to output all possible B2B Solves. Input the queue in the mirrored section if your bag 1 was L>J.
+    <br>
