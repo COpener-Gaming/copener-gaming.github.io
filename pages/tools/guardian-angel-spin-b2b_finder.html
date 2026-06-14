@@ -15,13 +15,44 @@
 
 <h1>Guardian Angel Spin PC Finder</h1>
 <mino-board fumen="v115@pgQ4IeR4GeglwhQ4EeilwhCeAtDeg0whRpBtwwCeg0?whRpAtywAeh0JeAgH"></mino-board>
+	<br> Normal Side (J>L) <br>
 <mino-board fumen="v115@ygAtg0GeBti0EeAtwhglDeQ4CewhglCewwR4Rpwhhl?AeywQ4RpwhJeAgH"></mino-board>
-
+	<br> Mirrored Side (L>J) <br>
+	
 <h2>Bag 1</h2>
-		<input type="text" id="Queue Search" />
-		<button type="button" onclick="queueSearch()">Queue Search</button>
-		<input type="text" id="Queue Search Mirrored" />
-		<button type="button" onclick="queueSearchMirrored()">Queue Search Mirrored</button>
-		<br>
-    Input a queue starting with the held T here to output all possible B2B Solves. Input the queue in the mirrored section if your bag 1 was L>J.
+	<input type="text" id="queueSearchInput" />
+	<button type="button" onclick="queueSearch()">Queue Search</button>
+	<button type="button" onclick="queueSearchMirrored()">Queue Search Mirrored</button>
+	<br>
+	Input a queue with all capital pieces starting with the held T here to output all possible B2B Solves (eg. TILJOSZT). Click "Queue Search Mirrored" if your bag 1 was L>J.
     <br>
+	
+<div id="output"></div>
+
+<script>
+	let inputQueue = document.getElementById("queueSearchInput").value;
+	function queueSearch()
+	{
+		if (inputQueue == "T")
+		{
+			return "hi";
+		}
+		else
+		{
+			return "bye";
+		}
+	}
+
+	function queueSearchMirrored()
+	{
+		if (inputQueue == "TI")
+		{
+			return "hi";
+		}
+		else
+		{
+			return "bye";
+		}
+	}
+</script>
+<body>
