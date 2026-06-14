@@ -24,7 +24,7 @@
 	<button type="button" onclick="queueSearch()">Queue Search</button>
 	<button type="button" onclick="queueSearchMirrored()">Queue Search Mirrored</button>
 	<br>
-	Input a queue with all capital pieces starting with the held T here to output all possible B2B Solves (eg. TILJOSZT). Click "Queue Search Mirrored" if your bag 1 was L>J.
+	Input a queue starting with the held T here to output all possible B2B Solves (eg. TILJOSZT). Click "Queue Search Mirrored" if your bag 1 was L>J.
     <br>
 	
 <div id="output"></div>
@@ -32,7 +32,7 @@
 <script>
 	function queueSearch()
 	{
-		let inputQueue = document.getElementById("queueSearchInput").value;
+		let inputQueue = document.getElementById("queueSearchInput").value.toUpperCase();
 		if (inputQueue === "T")
 		{
 			document.getElementById("output").textContent = "hi";
@@ -47,7 +47,7 @@
 
 	function queueSearchMirrored()
 	{
-		let inputQueue = document.getElementById("queueSearchInput").value;
+		let inputQueue = document.getElementById("queueSearchInput").value.toUpperCase();
 		if (inputQueue === "TI")
 		{
 			document.getElementById("output").textContent = "hi";
