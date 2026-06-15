@@ -32,34 +32,55 @@
 <div id="output"></div>
 
 <script>
-	function queueSearch()
+	let gaDataPromise = fetch("guardian-angel-allspin-b2b-cover.json").then(r => r.json());
+
+	async function queueSearch()
 	{
-		let inputQueue = document.getElementById("queueSearchInput").value.toUpperCase();
-		if (inputQueue === "T")
-		{
-			document.getElementById("output").textContent = "hi";
-			return "hi";
+		let inputQueue = document.getElementById("queueSearchInput").value.toUpperCase().trim();
+		const data = await gaDataPromise;
+		const output = document.getElementById("output");
+		output.innerHTML = "";
+
+		const indices = data.queue_map[inputQueue];
+		if (!indices) {
+			output.textContent = "No data for queue: " + inputQueue;
+			return;
 		}
-		else
-		{
-			document.getElementById("output").textContent = "bye";
-			return "bye";
+		if (indices.length === 0) {
+			output.textContent = "No B2B solves found for this queue.";
+			return;
+		}
+
+		for (const i of indices) {
+			const board = document.createElement('mino-board');
+			board.setAttribute('fumen', data.solutions[i]);
+			output.appendChild(board);
+			board.setup();
 		}
 	}
 
-	function queueSearchMirrored()
+	async function queueSearchMirrored()
 	{
-		let inputQueue = document.getElementById("queueSearchInput").value.toUpperCase();
-		if (inputQueue === "TI")
-		{
-			document.getElementById("output").textContent = "hi";
-			return "hi";
+		let inputQueue = document.getElementById("queueSearchInput").value.toUpperCase().trim();
+		const data = await gaDataPromise;
+		const output = document.getElementById("output");
+		output.innerHTML = "";
+
+		const indices = data.queue_map_mirror[inputQueue];
+		if (!indices) {
+			output.textContent = "No data for queue: " + inputQueue;
+			return;
 		}
-		else
-		{
-			
-			document.getElementById("output").textContent = "bye";
-			return "bye";
+		if (indices.length === 0) {
+			output.textContent = "No B2B solves found for this queue.";
+			return;
+		}
+
+		for (const i of indices) {
+			const board = document.createElement('mino-board');
+			board.setAttribute('fumen', data.solutions_mirror[i]);
+			output.appendChild(board);
+			board.setup();
 		}
 	}
 </script>
